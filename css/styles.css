@@ -1,0 +1,252 @@
+:root {
+  --highlight: rgb(254, 98, 42);
+  --review-text-cl: green;
+  --savings-text-cl: red;
+  --border-effect: 1px solid grey;
+  --primary-font: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--primary-font);
+  font-size: medium;
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  overflow-x: hidden;
+}
+
+main {
+  padding: 2.5rem 1rem;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+.product-title {
+  font-size: clamp(1.5rem, 2.5vw, 1.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.sort-by-panel-trigger,
+.product-container,
+.sort-by-btn {
+  border: var(--border-effect);
+}
+
+.sort-by-btn {
+  padding: 0.5rem 1.2rem;
+  transition: all 120ms linear;
+  background: white;
+  z-index: 100;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.sort-by-panel-trigger:hover,
+.sort-by-panel-trigger:focus,
+.sort-by-btn:hover,
+.sort-by-btn:focus {
+  background: grey;
+  color: white;
+}
+
+.sort-by-btn.selected {
+  color: white;
+  background: var(--highlight);
+  border: 1px solid white;
+}
+
+.sort-by-panel-trigger {
+  padding: 0.5rem 1rem;
+  width: calc(100vw - 5rem);
+  margin: auto;
+  transition: all 120ms linear;
+  font-weight: bold;
+}
+
+.sort-by-wrapper {
+  position: absolute;
+  transform: translateX(100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  inset: 0;
+  z-index: 100;
+  background: white;
+  border-left: 5px solid var(--highlight);
+  padding: 1rem;
+  transition: all 150ms linear;
+  opacity: 0;
+}
+
+.sort-by-wrapper.open-filter-panel {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.product-listing {
+  display: grid;
+  padding: 0.5rem 0rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.product-price {
+  margin-bottom: 0.3rem;
+  font-size: 14px;
+}
+
+.product-saving {
+  margin-bottom: 0.4rem;
+}
+
+.product-name,
+.review-score {
+  margin-bottom: 0.5rem;
+}
+
+.product-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding: 0.4rem 0.5rem;
+}
+
+.img-wrapper {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.img-wrapper img {
+  display: block;
+  margin: auto;
+  width: 100%;
+  transition: all 120ms linear;
+  max-width: 70%;
+}
+
+.img-wrapper img:hover {
+  transform: scale(1.1);
+}
+
+.product-name {
+  position: relative;
+  z-index: 10;
+  height: 36px;
+  font-size: clamp(14px, 2.5vw, 16px);
+}
+
+.product-saving {
+  color: var(--savings-text-cl);
+  font-size: small;
+  font-weight: 700;
+  min-height: 15px;
+  font-size: 15px;
+}
+
+.product-saving .saving-amount {
+  text-decoration: line-through;
+}
+
+.review-score {
+  color: var(--review-text-cl);
+  font-size: 14px;
+  font-weight: 700;
+  height: 16px;
+}
+
+.add-to-basket-btn {
+  display: block;
+  color: white;
+  background: var(--highlight);
+  padding: 0.5rem 1rem;
+  margin: 0 auto;
+  font-size: small;
+  letter-spacing: 0.5px;
+  outline: 1px solid white;
+  transition: all 120ms linear;
+}
+
+.add-to-basket-btn:hover,
+.add-to-basket-btn:focus-visible {
+  background: white;
+  outline: 1px solid var(--highlight);
+  color: var(--highlight);
+}
+
+@media (min-width: 768px) {
+  main {
+    padding: 2.5rem 8rem;
+  }
+
+  .product-listing {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1200px) {
+  main {
+    padding: 2.5rem 15rem;
+  }
+
+  .sort-by-panel-trigger {
+    display: none;
+  }
+
+  .sort-by-wrapper {
+    transform: unset;
+    display: grid;
+    position: relative;
+    justify-content: unsafe;
+    border-left: none;
+    grid-gap: 10px;
+    padding: 0 0 0.5rem;
+    opacity: 1;
+  }
+
+  .sort-by-btn {
+    margin-bottom: 0;
+  }
+
+  .add-to-basket-btn {
+    font-size: 14px;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .product-name {
+    margin-bottom: 0.5rem;
+  }
+
+  .product-price,
+  .product-saving {
+    margin-bottom: 0.3rem;
+  }
+
+  .review-score {
+    margin-bottom: 0.5rem;
+  }
+
+  .product-listing,
+  .sort-by-wrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
+  main {
+    padding: 2.5rem 20rem;
+  }
+
+  .product-saving {
+    margin-bottom: 0.5rem;
+  }
+}
